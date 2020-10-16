@@ -9,7 +9,6 @@ header {
   }
   nav {
     @include flexR();
-    gap: 0.5rem;
     button {
       background-color: transparent;
       transition: color 0.5s;

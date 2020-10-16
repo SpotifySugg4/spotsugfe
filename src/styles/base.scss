@@ -6,10 +6,12 @@ $c5: #6bccdb; //sky blue crayola
 @mixin flexC() {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   justify-content: flex-start;
 }
 @mixin flexR() {
   display: flex;
   flex-direction: row;
+  gap: 0.5rem;
   justify-content: space-between;
 }

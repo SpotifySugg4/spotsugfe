@@ -1,5 +1,15 @@
+$c1: #1a748e; //teal blue
+$c2: #f4e3cd; //champagne
+$c3: #992915; //rufous
+$c4: #d5b120; //gold metallic
+$c5: #6bccdb; //sky blue crayola
 @mixin flexC() {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+@mixin flexR() {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

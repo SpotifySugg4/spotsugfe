@@ -1,0 +1,28 @@
+@import "./base.scss";
+header {
+  background-color: $c1;
+  padding: 0.5rem 1rem;
+  @include flexR();
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  nav {
+    @include flexR();
+    gap: 0.5rem;
+    button {
+      background-color: transparent;
+      transition: color 0.5s;
+      border: 1px solid $c2;
+      border-radius: 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: $c4;
+      padding: 0 0.5rem;
+      &:hover {
+        color: $c2;
+        cursor: pointer;
+      }
+    }
+  }
+}

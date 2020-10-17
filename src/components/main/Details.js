@@ -1,7 +1,11 @@
 import React from "react";
 
 const Details = props => {
-    return <p>details container</p>
+    return (
+        <div className="details-container">
+            <p>song details</p>
+        </div>
+    )
 }
 
 export default Details;

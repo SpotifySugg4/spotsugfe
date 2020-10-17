@@ -1,0 +1,15 @@
+@import "./base.scss";
+.main {
+  @include flexR();
+  background-color: $c1;
+  padding: 0.5rem;
+  max-width: 30rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  .primary-list-container {
+    flex-grow: 1;
+  }
+  .details-container {
+    flex-grow: 3;
+  }
+}

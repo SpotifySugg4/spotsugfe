@@ -10,12 +10,4 @@
   header {
     width: 100%;
   }
-  .main {
-    @include flexR();
-    background-color: $c1;
-    padding: 0 1rem;
-    max-width: 30rem;
-    margin-bottom: 1rem;
-    flex-grow: 1;
-  }
 }

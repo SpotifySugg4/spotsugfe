@@ -1,0 +1,34 @@
+@import "./base.scss";
+.primary-list-container {
+  .tabs {
+    @include flexR();
+    justify-content: flex-start;
+    gap: 0.25rem;
+    button {
+      color: $c2;
+      border-radius: 0.5rem 0.5rem 0 0;
+      background-color: darken(desaturate($c5, 30), 20);
+      border: none;
+      &:hover {
+        cursor: pointer;
+        color: $c1;
+        background-color: $c2;
+      }
+      &.active {
+        &:hover {
+          cursor: default;
+        }
+        color: $c1;
+        background-color: $c5;
+      }
+    }
+  }
+  .list-container {
+    border-top-right-radius: 0.5rem;
+    background-color: $c5;
+    padding: 0.25rem;
+    button {
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+}

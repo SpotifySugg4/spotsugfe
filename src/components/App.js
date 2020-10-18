@@ -1,24 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import '../styles/App.scss';
-import Header from "./Header";
-import PrivateRoute from "./PrivateRoute";
-import { connect } from "react-redux";
+import React from 'react'
 
-
-function App() {
+const App = () => {
   return (
-    <>
-    <Header />
-      <Router>
-        {/* <PrivateRoute /> */}
-    </Router>
-    </>
-  );
+    <div>
+      
+    </div>
+  )
 }
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.loggedIn,
-  }
-}
-export default connect(mapStateToProps, {})(App);
+
+export default App

@@ -1,18 +1,11 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React from 'react'
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = () => {
   return (
-    <Route
-      {...rest}
-      render={() => {
-        if (rest.loggedIn) {
-          return <Component {...rest} />;
-        }
-        return <Redirect to="/" />;
-      }}
-    />
-  );
-};
+    <div>
+      
+    </div>
+  )
+}
 
-export default PrivateRoute;
+export default PrivateRoute

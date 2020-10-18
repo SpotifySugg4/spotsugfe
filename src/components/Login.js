@@ -1,88 +1,136 @@
-// import React, { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import React, {useState, useEffect } from 'react';
+import axios from 'axios';
+import * as yup from 'yup'; 
 
-// // import { connect } from "react-redux";
-// // import Header from "./Header";
+const Register = () => {
 
-// const Login = props => {
-//   const [user, setUser] = useState({ username: "", password: "" });
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+    loginErrors:''
+  })
 
-//   const handleChange = event => {
-//     setUser({ ...user, [event.target.name]: event.target.value });
-//   };
-//   const handleLoginSubmit = event => {
-//     event.preventDefault();
-//     props.login(user, status =>
-//       status
-//         ? props.history.push(props.location.state?.url || "/")
-//         : props.history.push("/login")
-//     );
-//   };
 
-//   useEffect(() => {
-//     if (localStorage.getItem("token")) props.history.push("/");
+  const [buttonDisabled, setButtonDisabled] = useState(false)
 
-//     return () => props.clearErrorMessages();
-//   }, []);
-//   console.log({ isLoading: props.isLoading });
-//   return (
-//     <div className="login-page-container">
-//       <Login />
-//       <div className="login-form-container">
-//         <form className="login-form" onSubmit={handleLoginSubmit}>
-//           <h1>
-//             <span>Log in</span> <i className="fas fa-sign-in-alt"></i>
-//           </h1>
-//           {/* {props.isLoading ? (
-//             <div style={{ display: "flex", justifyContent: "center" }}>
-//               <CircularProgress />
-//             </div>
-//           ) : (
-//             <>
-//               {props.message && <div className="error">{props.message}</div>}
-//               {props.location.state?.newSignedUpUser && ( */}
-//                 <div className="signup_successful">
-//                   You have successfully Register,{" "}
-//                   <strong>{props.location.state?.newSignedUpUser}</strong>.
-//                   <br />
-//                   <br />
-//                   Please log in using the form below.
-//                 </div>
-//               )}
-//               <label>Username:</label>
-//               <input
-//                 type="text"
-//                 name="username"
-//                 id="name"
-//                 onChange={event => handleChange(event)}
-//                 value={user.userName}
-//               />
-//               <label>Password:</label>
-//               <input
-//                 type="password"
-//                 name="password"
-//                 id="password"
-//                 onChange={event => handleChange(event)}
-//                 value={user.password}
-//               />
-//               <button>Log In</button>
-//               <div className="register_link">
-//                 If you do not have an account with us,{" "}
-//                 <Link to="/Register">Register up here</Link>.
-//               </div>
-//             {/* </> */}
-//           )}
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
+  const [users, setUsers] = useState([])
 
-// const mapStateToProps = state => {
-//   return {
-//     message: state.message,
-//     isLoading: state.isLoading
-//   };
-// };
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  })
 
-// export default Login;
+const formSchema = yup.object().shape({
+  email: yup
+    .string()
+    .required('A valid email is required'),
+  password: yup
+    .string()
+    .required('Please supply a password with a minumum of 8 characters'),
+})
+
+  const completeForm = () => {
+    formSchema.isValid(formState)
+      .then(isValid => {
+        setButtonDisabled(!isValid)
+      })
+  }
+  useEffect(completeForm, [formState])
+
+
+  const validateChange = e => {
+
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value)
+      .then(valid => {
+        setErrors({
+          ...errors,
+          [e.target.name]: ''
+        })
+      })
+      .catch(error => {
+        setErrors({
+          ...errors,
+          [e.target.name]: error.errors[0]
+        })
+      })
+  }
+
+
+  const changeHandler = e => {
+
+    e.persist()
+
+    const FormData = {
+      ...formState,
+      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    }
+
+    validateChange(e)
+
+    setFormState(FormData)
+
+  }
+
+  const formSubmit = e => {
+    e.preventDefault()
+    axios
+      .post('https://reqres.in/api/login', formState)
+      .then(res => {
+        setUsers([...users, res.data])
+        setFormState({
+          email: '',
+          password: '',
+        })
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
+  }
+
+  return (
+    <form onSubmit={formSubmit}>
+
+      <label htmlFor='email'>
+        Email
+        <input 
+        id='email'
+        type='text'
+        name='email'
+        value={formState.email}
+        onChange={changeHandler}
+        required
+        />
+
+        {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>): null}
+
+      </label>
+
+
+      <label htmlFor='password'>
+        Create Password
+        <input 
+        id='password'
+        type='password'
+        name='password'
+        value={formState.password}
+        onChange={changeHandler}
+        required
+        />
+
+        {errors.password.length > 0 ? (<p className='error'>{errors.password}</p>): null}
+
+      </label>
+
+      <button disabled={buttonDisabled} type='signIn'>Login</button>
+
+      <pre>{JSON.stringify(users, null, 2)}</pre>
+
+    </form>
+  )
+
+}
+
+
+export default Register

@@ -7,11 +7,9 @@ import Register from "./Register";
 import PrivateRoute from "./PrivateRoute";
 import Main from "./Main";
 import { connect } from "react-redux";
-
-
 function App(props) {
   return (
-    <>
+<>
       <Router>
       <Header />
         <Route exact path="/">
@@ -24,7 +22,7 @@ function App(props) {
           <Register />
         </Route>
     </Router>
-    </>
+</>
   );
 }
 const mapStateToProps = state => {

@@ -5,7 +5,7 @@ import * as yup from 'yup';
 
 const RegisterDiv = styled.div`
   width: auto;
-  background: red;
+  background: grey;
   color: black;
   padding: 2%;
   position: fixed;
@@ -96,7 +96,7 @@ const formSchema = yup.object().shape({
   const formSubmit = e => {
     e.preventDefault()
     axios
-      .post('https://reqres.in/api/register', formState)
+      .post('https://reqres.in/api/users', formState)
       .then(res => {
         setUsers([...users, res.data])
         setFormState({

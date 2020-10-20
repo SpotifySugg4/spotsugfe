@@ -1,0 +1,13 @@
+@import "./base.scss";
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-color: $c2;
+  color: $c4;
+  @include flexC();
+  align-items: center;
+  header {
+    width: 100%;
+  }
+}

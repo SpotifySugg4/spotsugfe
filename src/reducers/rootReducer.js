@@ -4,6 +4,7 @@ const initialState = {
     loggedIn: true,
     searchResults: [],
     favorites: [],
+    activeSong: null,
 }
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -14,7 +15,13 @@ export default function rootReducer(state = initialState, action) {
         case types.SEARCHING:
             return { ...state, apiStatus: "searching" }
         case types.SEARCH_DONE:
-            return {...state, apiStatus: "", searchResults: action.payload }
+            return { ...state, apiStatus: "", searchResults: action.payload }
+        case types.SET_ACTIVE_SONG:
+            return { ...state, activeSong: action.payload }
+        case types.ADD_FAVORITE:
+            return { ...state, favorites: [...state.favorites, action.payload] }
+        case types.REMOVE_FAVORITE:
+            return {...state, favorites: state.favorites.filter(favorite=>favorite.id!==action.payload.id)}
         default: return state;
     }
 }

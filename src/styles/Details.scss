@@ -1,0 +1,11 @@
+@import "./base.scss";
+.details-container {
+  @include flexC();
+  h3 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+  .details-box {
+    @include flexR();
+  }
+}

@@ -14,3 +14,15 @@ export const search = query => dispatch => {
         dispatch({ type: types.SEARCH_DONE, payload: r.data.tracks.items })
     }).catch(e => console.log(e));
 }
+
+export const setActiveSong = song => dispatch => {
+    dispatch({type: types.SET_ACTIVE_SONG, payload: song})
+}
+
+export const addFavorite = song => dispatch => {
+    dispatch({type: types.ADD_FAVORITE, payload: song})
+}
+
+export const removeFavorite = song => dispatch => {
+    dispatch({ type: types.REMOVE_FAVORITE, payload: song })
+}

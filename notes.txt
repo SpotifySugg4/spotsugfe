@@ -1,0 +1,14 @@
+object structure for search:
+
+r.data.tracks.items (array)
+
+each array item contains:
+    album: {
+        name: "album name",
+        images: [{height: 640, url: "..."},...]
+    },
+    artists: [{external_urls: {spotify: ...}, name: "artist name"}],
+    external_urls: {spotify: ...},
+    id: ...
+    name: "track name",
+    popularity: 71,

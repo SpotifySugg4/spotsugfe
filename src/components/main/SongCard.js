@@ -1,7 +1,11 @@
 import React from "react";
-
-const SongCard = props => {
-    return <p>song card</p>
+import "../../styles/SongCard.scss";
+const SongCard = ({ song }) => {
+    const { name, album, artists, external_urls, id, popularity } = song;
+    return (<div className="song-card">
+        <h3>{name}</h3>
+        <p>{external_urls.spotify}</p>
+    </div>)
 }
 
 export default SongCard;

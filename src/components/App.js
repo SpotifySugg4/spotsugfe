@@ -5,16 +5,16 @@ import Header from "./Header";
 import Login from "./Login";
 import Register from "./Register";
 import PrivateRoute from "./PrivateRoute";
-import Main from "./Main";
+// import Main from "./Main";
 import { connect } from "react-redux";
 function App(props) {
   return (
 <>
       <Router>
       <Header />
-        <Route exact path="/">
-          <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
-        </Route>
+//         <Route exact path="/">
+//           <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
+//         </Route>
         <Route path="/login">
           <Login />
         </Route>

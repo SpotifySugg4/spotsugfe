@@ -12,9 +12,9 @@ function App(props) {
 <>
       <Router>
       <Header />
-        <Route exact path="/">
-          <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
-        </Route>
+         <Route exact path="/">
+           <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
+         </Route>
         <Route path="/login">
           <Login />
         </Route>
@@ -30,4 +30,8 @@ const mapStateToProps = state => {
     loggedIn: state.loggedIn,
   }
 }
+<<<<<<< HEAD
 export default connect(mapStateToProps, {})(App);
+=======
+export default connect(mapStateToProps, {})(App);
+>>>>>>> 8b1fc50e5ea52f971f258be72071ba95eca28337

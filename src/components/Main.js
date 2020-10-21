@@ -7,7 +7,8 @@ import "../styles/Main.scss";
 const Main = props => {
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
-    const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+    // const redirectUri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
+    const redirectUri = encodeURI(process.env.REACT_APP_SPOTIFY_REDIRECT_URI);
     const location = useLocation() || null;
     const [code] = useState(new URLSearchParams(location.search).get('code'))
     useEffect(() => {
@@ -21,17 +22,26 @@ const Main = props => {
             console.log(`https://accounts.spotify.com/api/token?grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}`);
             axios.create(
                 {
-                    baseURL: "https://accounts.spotify.com/api",
+                    baseURL: "https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api",
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
-                        "Authorization": `Basic ${auth64}`,
+                        // "Authorization": `Basic ${auth64}`,
                     },
-                    body: {
-                        "grant_type": "authorization_code",
+                    // body: {
+                    //     "grant_type": "authorization_code",
+                    //     "code": code,
+                    //     "redirect_uri": redirectUri,
+                    //     "client_id": clientId,
+                    //     "client_secret": clientSecret,
+                    // }
+                }).post(`/token`,{
                         "code": code,
+                        "grant_type": "authorization_code",
                         "redirect_uri": redirectUri,
-                    }
-                }).post(`/token`).then(r => console.log(r)).catch(e=>console.log(e));
+                        "client_id": clientId,
+                        "client_secret": clientSecret,
+                    }).then(r => console.log(r)).catch(console.log);
+            //?grant_type=authorization_code&code=${code}&CLIENT_ID=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}
         }
     },[clientId,clientSecret,code,redirectUri]);
     

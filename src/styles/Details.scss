@@ -1,11 +1,24 @@
 @import "./base.scss";
 .details-container {
-  @include flexC();
   h3 {
     font-size: 1.2rem;
     font-weight: bolder;
   }
-  .details-box {
-    @include flexR();
+  .suggestions-container {
+    @include flexC();
+    overflow-y: auto;
+    gap: 0.5rem;
+    .suggestion-card {
+      @include flexC();
+      gap: 0.25rem;
+      padding: 0.25rem;
+      background-color: darken($c1, 20);
+      button {
+        background-color: transparent;
+        border: 1px solid $c2;
+        padding: 0;
+        color: $c4;
+      }
+    }
   }
 }

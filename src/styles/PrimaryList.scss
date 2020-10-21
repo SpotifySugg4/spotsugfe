@@ -31,19 +31,20 @@
         &:hover {
           cursor: default;
         }
-        color: $c1;
-        background-color: $c5;
+        color: darken($c1, 50);
+        background-color: $c2;
       }
     }
   }
-  .list-container {
-    border-top-right-radius: 0.5rem;
-    background-color: $c5;
-    padding: 0.25rem;
-    button {
-      font-family: "Courier New", Courier, monospace;
-      border-radius: 0 0.5rem 0.5rem 0;
-      border: none;
+  border-top-right-radius: 0.5rem;
+  background-color: $c5;
+  padding: 0.25rem;
+  button {
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: none;
+    &:hover {
+      cursor: pointer;
     }
   }
 }

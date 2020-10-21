@@ -18,7 +18,7 @@ const PrimaryList = props => {
                 <button className={tabs.search} onClick={()=>setTabs({search:"active",favorites:""})}>search</button>
                 <button className={tabs.favorites} onClick={()=>setTabs({search:"",favorites:"active"})}>favorites</button>
             </div>
-            <div className="list-container">
+
                 {tabs.search === "active" && (
                     <form
                         className="search-bar"
@@ -38,10 +38,8 @@ const PrimaryList = props => {
                         <button type="submit">filter</button>
                     </form>
                 )}
-                <div className="list">
                     <SongList list={listToSend} />
-                </div>
-            </div>
+
         </div>
     )
 }

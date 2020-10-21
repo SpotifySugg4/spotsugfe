@@ -1,17 +1,30 @@
 @import "./base.scss";
 .main {
   @include flexR();
+  justify-content: center;
   background-color: $c1;
-  width: calc(100vw - 1rem);
+  overflow-y: hidden;
   margin-bottom: 1rem;
-  flex-grow: 1;
   .primary-list-container {
-    padding: 0.5rem;
-    flex-grow: 0;
-    border-right: 1px solid $c2;
+    @include flexC();
+    gap: 0;
+    height: 100%;
+    overflow-y: auto;
+    width: 30vw;
+    min-width: 10rem;
   }
   .details-container {
+    @include flexC();
+    height: 100%;
+    overflow-y: auto;
     padding: 0.5rem;
-    flex-grow: 1;
+    width: 50vw;
+    min-width: 10rem;
+  }
+  .song-list {
+    @include flexC();
+    padding-top: 1rem;
+    gap: 0.5rem;
+    overflow-y: auto;
   }
 }

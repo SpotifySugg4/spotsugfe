@@ -1,5 +1,18 @@
 @import "./base.scss";
 .primary-list-container {
+  padding: 0.5rem;
+  flex-grow: 0;
+  width: 33%;
+  border-right: 1px solid $c2;
+  .search-bar,
+  .filter-bar {
+    @include flexC();
+    gap: 0;
+    button[type="submit"] {
+      justify-self: stretch;
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+  }
   .tabs {
     @include flexR();
     justify-content: flex-start;
@@ -18,17 +31,20 @@
         &:hover {
           cursor: default;
         }
-        color: $c1;
-        background-color: $c5;
+        color: darken($c1, 50);
+        background-color: $c2;
       }
     }
   }
-  .list-container {
-    border-top-right-radius: 0.5rem;
-    background-color: $c5;
-    padding: 0.25rem;
-    button {
-      font-family: "Courier New", Courier, monospace;
+  border-top-right-radius: 0.5rem;
+  background-color: $c5;
+  padding: 0.25rem;
+  button {
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: none;
+    &:hover {
+      cursor: pointer;
     }
   }
 }

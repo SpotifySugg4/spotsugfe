@@ -3,6 +3,7 @@
 #root {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   background-color: $c2;
   color: $c4;
   @include flexC();
@@ -10,4 +11,27 @@
   header {
     width: 100%;
   }
+  a {
+    text-decoration: none;
+    color: $c4;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $c1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $c2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $c2;
 }

@@ -1,5 +1,12 @@
 @import "./base.scss";
 .details-container {
+  @include flexC();
+  background-color: transparentize($c1, 0.5);
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 0.5rem;
+  width: 50vw;
+  min-width: 10rem;
   h3 {
     font-size: 1.2rem;
     font-weight: bolder;
@@ -8,17 +15,5 @@
     @include flexC();
     overflow-y: auto;
     gap: 0.5rem;
-    .suggestion-card {
-      @include flexC();
-      gap: 0.25rem;
-      padding: 0.25rem;
-      background-color: darken($c1, 20);
-      button {
-        background-color: transparent;
-        border: 1px solid $c2;
-        padding: 0;
-        color: $c4;
-      }
-    }
   }
 }

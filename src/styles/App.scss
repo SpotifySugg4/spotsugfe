@@ -4,8 +4,10 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: $c2;
-  color: $c4;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: $c2;
   @include flexC();
   align-items: center;
   header {
@@ -13,10 +15,26 @@
   }
   a {
     text-decoration: none;
-    color: $c4;
+    color: $c2;
     &:hover {
       text-decoration: underline;
     }
+  }
+  .artist-name {
+    color: lighten($c4, 20);
+    font-weight: bold;
+  }
+  .track-name {
+    color: lighten($c5, 20);
+    font-weight: bolder;
+  }
+  .add-favorite,
+  .remove-favorite {
+    white-space: nowrap;
+    padding: 0.5rem;
+  }
+  .star {
+    color: $c4;
   }
 }
 
@@ -30,6 +48,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: $c2;
+  border-radius: 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {

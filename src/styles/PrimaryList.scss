@@ -1,16 +1,29 @@
 @import "./base.scss";
 .primary-list-container {
+  @include flexC();
+  background-color: transparentize($c1, 0.5);
+  border-radius: 0.5rem;
+  gap: 0;
+  height: 100%;
+  width: 30vw;
+  min-width: 10rem;
   padding: 0.5rem;
-  flex-grow: 0;
-  width: 33%;
-  border-right: 1px solid $c2;
   .search-bar,
   .filter-bar {
     @include flexC();
     gap: 0;
+    input {
+      border-top-right-radius: 0.5rem;
+      background-color: lighten(desaturate($c1, 40), 10);
+      color: $c2;
+      border: none;
+    }
     button[type="submit"] {
       justify-self: stretch;
       border-radius: 0 0 0.5rem 0.5rem;
+      color: $c2;
+      background-color: $c1;
+      margin-bottom: 0.5rem;
     }
   }
   .tabs {
@@ -18,33 +31,35 @@
     justify-content: flex-start;
     gap: 0.25rem;
     button {
-      color: $c2;
+      color: desaturate(darken($c2, 20), 50);
       border-radius: 0.5rem 0.5rem 0 0;
-      background-color: darken(desaturate($c5, 30), 20);
+      background-color: darken($c1, 10);
       border: none;
       &:hover {
         cursor: pointer;
-        color: $c1;
-        background-color: $c2;
+        color: $c2;
+        background-color: $c1;
       }
       &.active {
         &:hover {
           cursor: default;
         }
-        color: darken($c1, 50);
-        background-color: $c2;
+        color: $c2;
+        background-color: $c1;
       }
     }
   }
-  border-top-right-radius: 0.5rem;
-  background-color: $c5;
-  padding: 0.25rem;
   button {
-    font-family: "Courier New", Courier, monospace;
-    border-radius: 0 0.5rem 0.5rem 0;
+    border-radius: 0.5rem;
     border: none;
     &:hover {
       cursor: pointer;
     }
+  }
+  .song-list {
+    @include flexC();
+    padding: 0.5rem;
+    gap: 0.5rem;
+    overflow-y: auto;
   }
 }

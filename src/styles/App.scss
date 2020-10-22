@@ -36,6 +36,11 @@
   .star {
     color: $c4;
   }
+  > form {
+    background-color: transparentize($c1, 0.5);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
 }
 
 ::-webkit-scrollbar {

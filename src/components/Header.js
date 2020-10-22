@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import "../styles/Header.scss";
 import { connect } from "react-redux";
+import { logOut } from "../actions/actions";
 function Header(props) {
     const {push} = useHistory();
     return (
@@ -9,7 +10,7 @@ function Header(props) {
             <h1>SpotiFindYa</h1>
             <nav>
                 {props.loggedIn ?
-                    (<button>logout</button>)
+                    (<button onClick={props.logOut}>logout</button>)
                     :
                     (<>
                         <button onClick={() => push("/login")}>log in</button>
@@ -25,4 +26,4 @@ const mapStateToProps = state => {
       loggedIn: state.loggedIn,
     }
   }
-  export default connect(mapStateToProps, {})(Header);
+  export default connect(mapStateToProps, {logOut})(Header);

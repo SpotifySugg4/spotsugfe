@@ -1,8 +1,10 @@
 import React, {useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup'; 
+import { connect } from "react-redux";
+import { logIn } from "../actions/actions";
 
-const Register = () => {
+const Register = (props) => {
 
   const [formState, setFormState] = useState({
     email: '',
@@ -75,18 +77,19 @@ const formSchema = yup.object().shape({
 
   const formSubmit = e => {
     e.preventDefault()
-    axios
-      .post('https://reqres.in/api/login', formState)
-      .then(res => {
-        setUsers([...users, res.data])
-        setFormState({
-          email: '',
-          password: '',
-        })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    props.logIn({email: formState.email, password: formState.password})
+    // axios
+    //   .post('https://reqres.in/api/login', formState)
+    //   .then(res => {
+    //     setUsers([...users, res.data])
+    //     setFormState({
+    //       email: '',
+    //       password: '',
+    //     })
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   })
   }
 
   return (
@@ -133,4 +136,4 @@ const formSchema = yup.object().shape({
 }
 
 
-export default Register
+export default connect(null, { logIn })(Register);

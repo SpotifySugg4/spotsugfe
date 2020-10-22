@@ -1,7 +1,9 @@
 import React, {useState, useEffect } from 'react';
 import styled from "styled-components";
-import axios from 'axios';
+// import axios from 'axios';
 import * as yup from 'yup'; 
+import { connect } from "react-redux";
+import { register } from "../actions/actions";
 
 const RegisterDiv = styled.div`
   width: auto;
@@ -13,7 +15,7 @@ const RegisterDiv = styled.div`
   border-radius: 10px;
   overflow: hidden;
 `;
-const Register = () => {
+const Register = (props) => {
 
   const [formState, setFormState] = useState({
     name: '',
@@ -95,20 +97,21 @@ const formSchema = yup.object().shape({
 
   const formSubmit = e => {
     e.preventDefault()
-    axios
-      .post('https://reqres.in/api/register', formState)
-      .then(res => {
-        setUsers([...users, res.data])
-        setFormState({
-          name: '',
-          email: '',
-          password: '',
-          terms: true
-        })
-      })
-      .catch(error => {
-        console.log(error.response)
-      })
+    props.register({name: formState.name, email: formState.email, password: formState.password});
+    // axios
+    //   .post('https://reqres.in/api/register', formState)
+    //   .then(res => {
+    //     setUsers([...users, res.data])
+    //     setFormState({
+    //       name: '',
+    //       email: '',
+    //       password: '',
+    //       terms: true
+    //     })
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   })
   }
 
   return (
@@ -183,5 +186,4 @@ const formSchema = yup.object().shape({
 
 }
 
-
-export default Register
+export default connect(null, { register })(Register);

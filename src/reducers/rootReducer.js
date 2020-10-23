@@ -1,7 +1,8 @@
 import * as types from "../actions/actionTypes";
 const initialState = {
     apiStatus: "",
-    loggedIn: true,
+    loggedIn: false,
+    // true //
 }
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {

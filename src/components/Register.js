@@ -1,25 +1,14 @@
 import React, {useState, useEffect } from 'react';
-import styled from "styled-components";
 import axios from 'axios';
 import * as yup from 'yup'; 
 
-const RegisterDiv = styled.div`
-  width: auto;
-  background: grey;
-  color: black;
-  padding: 2%;
-  position: fixed;
-  margin: 2% 15% 15% 30%;
-  border-radius: 10px;
-  overflow: hidden;
-`;
 const Register = () => {
 
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     password: '',
-    terms: false
+    // terms: false
   })
 
 
@@ -31,7 +20,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    terms: ''
+    // terms: ''
   })
 
 const formSchema = yup.object().shape({
@@ -96,7 +85,7 @@ const formSchema = yup.object().shape({
   const formSubmit = e => {
     e.preventDefault()
     axios
-      .post('https://reqres.in/api/users', formState)
+      .post('https://tempbackend.herokuapp.com/users/register', formState)
       .then(res => {
         setUsers([...users, res.data])
         setFormState({
@@ -112,10 +101,25 @@ const formSchema = yup.object().shape({
   }
 
   return (
-    <RegisterDiv>
+    
     <form onSubmit={formSubmit}>
       <label htmlFor='name'>
-        Name
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+    <br></br>
+
+        <h1>Name:</h1>
         <input 
         id='name'
         type='text'
@@ -127,10 +131,11 @@ const formSchema = yup.object().shape({
         {errors.name.length > 0 ? (<p className='error'>{errors.name}</p>): null}
 
       </label>
-
+    <br></br>
+    <br></br>
 
       <label htmlFor='email'>
-        Email
+        <h1>Email:</h1>
         <input 
         id='email'
         type='text'
@@ -142,11 +147,13 @@ const formSchema = yup.object().shape({
         {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>): null}
 
       </label>
+      <br></br>
+      <br></br>
 
 
       <label htmlFor='password'>
-        Create Password
-        <input 
+      <h1>Create Password</h1>        
+      <input 
         id='password'
         type='password'
         name='password'
@@ -159,7 +166,7 @@ const formSchema = yup.object().shape({
       </label>
 
 
-      <label htmlFor='terms' className='terms'>
+      {/* <label htmlFor='terms' className='terms'>
         <input 
         id='terms'
         type='checkbox'
@@ -171,14 +178,16 @@ const formSchema = yup.object().shape({
 
         {errors.terms.length > 0 ? (<p className='error'>{errors.terms}</p>): null}
 
-      </label>
-
+      </label> */}
+      <br>
+      </br>
+      <br>
+      </br>
       <button disabled={buttonDisabled} type='submit'>Create My Account</button>
 
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
 
     </form>
-    </RegisterDiv>
   )
 
 }

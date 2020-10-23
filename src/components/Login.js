@@ -76,7 +76,7 @@ const formSchema = yup.object().shape({
   const formSubmit = e => {
     e.preventDefault()
     axios
-      .post('https://reqres.in/api/login', formState)
+      .post('https://tempbackend.herokuapp.com/users/login', formState)
       .then(res => {
         setUsers([...users, res.data])
         setFormState({
@@ -93,7 +93,18 @@ const formSchema = yup.object().shape({
     <form onSubmit={formSubmit}>
 
       <label htmlFor='email'>
-        Email
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+
+        <h1>Email:</h1>
         <input 
         id='email'
         type='text'
@@ -106,10 +117,11 @@ const formSchema = yup.object().shape({
         {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>): null}
 
       </label>
-
+<br></br>
+<br></br>
 
       <label htmlFor='password'>
-        Create Password
+         <h1>Password:</h1>
         <input 
         id='password'
         type='password'
@@ -122,10 +134,13 @@ const formSchema = yup.object().shape({
         {errors.password.length > 0 ? (<p className='error'>{errors.password}</p>): null}
 
       </label>
-
+<br>
+</br>
+<br>
+</br>
       <button disabled={buttonDisabled} type='signIn'>Login</button>
 
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
 
     </form>
   )

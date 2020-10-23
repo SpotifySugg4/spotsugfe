@@ -1,19 +1,32 @@
 import * as types from "../actions/actionTypes";
+
+const ls = key => JSON.parse(localStorage.getItem(key));
+const loggedIn = ls("loggedIn") === null ? false : ls("loggedIn");
+const username = ls("username") === null ? null : ls("username");
+const favorites = ls("favorites") === null ? [] : ls("favorites");
+const token = ls("token") === undefined ? null : ls("token");
+
+
 const initialState = {
     apiStatus: "",
-    loggedIn: false,
-    username: null,
+    loggedIn: loggedIn,
+    username: username,
     searchResults: [],
-    favorites: [],
+    favorites: favorites,
     activeSong: null,
-    token: null,
+    token: token,
 }
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
         case types.REGISTER:
+            console.log('register');
             return { ...state, apiStatus: "registering" }
         case types.REGISTERED:
-            return { ...state, apiStatus: "" }
+            console.log('registered', action.payload.token)
+            return { ...state, loggedIn: true, apiStatus: "", token: action.payload.token, username: action.payload.username }
+        case types.REGISTER_FAILED:
+            console.log('register failed');
+            return { ...state, apiStatus: "registration failed" }
         case types.LOGIN:
             return { ...state, apiStatus: "attempting to log in" }
         case types.LOGGED_IN:
@@ -39,9 +52,13 @@ export default function rootReducer(state = initialState, action) {
         case types.SET_ACTIVE_SONG:
             return { ...state, activeSong: action.payload }
         case types.ADD_FAVORITE:
-            return { ...state, favorites: [...state.favorites, action.payload] }
+            const newFavorites_add = [...state.favorites, action.payload];
+            localStorage.setItem("favorites",JSON.stringify(newFavorites_add))
+            return { ...state, favorites: newFavorites_add }
         case types.REMOVE_FAVORITE:
-            return {...state, favorites: state.favorites.filter(favorite=>favorite.id!==action.payload.id)}
+            const newFavorites_remove = state.favorites.filter(fav => fav.id !== action.payload.id);
+            localStorage.setItem("favorites", JSON.stringify(newFavorites_remove));
+            return {...state, favorites: newFavorites_remove}
         default: return state;
     }
 }

@@ -1,30 +1,34 @@
 import * as types from "./actionTypes";
-import axiosWithAuth from "../api/axiosWithAuth";
+// import axiosWithAuth from "../api/axiosWithAuth";
 import axios from "axios";
 export const register = credentials => dispatch => {
     dispatch({ type: types.REGISTER });
-    axios.post("https://tempbackend.herokuapp.com/users/register",credentials).then(r => {
-        console.log(r);
-        dispatch({type: types.REGISTERED }) 
-    }).catch(e=>dispatch({type: types.REGISTER_FAILED}))
+    axios.post("https://tempbackend.herokuapp.com/users/register", credentials).then(r => {
+        dispatch({ type: types.LOGGED_IN, payload: { token: r.data.token, username: credentials.name } });
+        localStorage.setItem("username", JSON.stringify(credentials.name));
+        localStorage.setItem("token", JSON.stringify(r.data.token));
+        localStorage.setItem("loggedIn", true);
+    }).catch(e => {
+        console.log(e);
+        dispatch({ type: types.REGISTER_FAILED });
+    })
 }
 
 export const logIn = credentials => dispatch => {
     dispatch({ type: types.LOGIN });
     axios.post("https://tempbackend.herokuapp.com/users/login", credentials).then(r => {
-        console.log(r);
         dispatch({ type: types.LOGGED_IN, payload: { token: r.data.token, username: r.data.user.name } });
         localStorage.setItem("username", JSON.stringify(r.data.user.name));
         localStorage.setItem("token", JSON.stringify(r.data.token));
+        localStorage.setItem("loggedIn", true);
     }).catch(e=>dispatch({type: types.LOGIN_FAILED}))
 }
 
 export const logOut = () => dispatch => {
-    dispatch({type: types.LOGOUT})
-}
-
-export const setToken = token => dispatch => {
-    dispatch({type: types.SET_TOKEN, payload: token })
+    dispatch({ type: types.LOGOUT })
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    localStorage.setItem("loggedIn", false);
 }
 
 export const search = query => dispatch => {
@@ -36,9 +40,10 @@ export const search = query => dispatch => {
 
 export const getFavorites = () => dispatch => {
     dispatch({ type: types.GET_FAVORITES });
-    axiosWithAuth("/favorites").then(r => {
-        dispatch({type: types.GOT_FAVORITES, payload: r.data})
-    }).catch(e=>dispatch({type: types.GET_FAVORITES_FAILED}))
+    // axiosWithAuth("/favorites").then(r => {
+    //     dispatch({type: types.GOT_FAVORITES, payload: r.data})
+    // }).catch(e=>dispatch({type: types.GET_FAVORITES_FAILED}))
+    dispatch({type: types.GOT_FAVORITES, payload: JSON.parse(localStorage.getItem("favorites"))})
 }
 
 export const setActiveSong = song => dispatch => {
@@ -46,7 +51,6 @@ export const setActiveSong = song => dispatch => {
 }
 
 export const addFavorite = song => dispatch => {
-    //update these to work with backend
     dispatch({type: types.ADD_FAVORITE, payload: song})
 }
 

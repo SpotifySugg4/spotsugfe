@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import '../styles/App.scss';
 import Header from "./Header";
@@ -7,15 +7,7 @@ import Register from "./Register";
 import PrivateRoute from "./PrivateRoute";
 import Main from "./Main";
 import { connect } from "react-redux";
-import { setToken } from "../actions/actions";
 function App(props) {
-  const setToken = useCallback(props.setToken)
-  useEffect(() => {
-    const localToken = JSON.parse(localStorage.getItem("token"));
-    if (localToken !== null) { 
-      setToken(localToken);
-    }
-  }, [setToken])
   return (
 <>
       <Router>
@@ -41,4 +33,4 @@ const mapStateToProps = state => {
     token: state.token
   }
 }
-export default connect(mapStateToProps, {setToken})(App);
+export default connect(mapStateToProps, {})(App);

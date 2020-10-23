@@ -1,26 +1,34 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { search } from "../../actions/actions";
+import SongList from "./SongList";
 import "../../styles/PrimaryList.scss";
 const PrimaryList = props => {
     const [tabs, setTabs] = useState({ search: "active", favorites: "" });
     const [query, setQuery] = useState("");
     const [filter, setFilter] = useState("");
-    const search = e => {
-        e.preventDefault();
-        console.log(`searching for: ${query}`);
-    }
     const filterFavorites = e => {
         e.preventDefault();
         console.log(`filtering: ${filter}`);
     }
+    const listToSend = tabs.search === "active" ? props.searchResults : props.favorites.filter(fav => {
+        if (fav.name.toLowerCase().includes(filter.toLowerCase())) { return fav }
+        if (fav.artists.filter(artist => artist.name.toLowerCase().includes(filter.toLowerCase())).length > 0) { return fav }
+    });
     return (
         <div className="primary-list-container">
             <div className="tabs">
                 <button className={tabs.search} onClick={()=>setTabs({search:"active",favorites:""})}>search</button>
                 <button className={tabs.favorites} onClick={()=>setTabs({search:"",favorites:"active"})}>favorites</button>
             </div>
-            <div className="list-container">
+
                 {tabs.search === "active" && (
-                    <form className="search-bar" onSubmit={search}>
+                    <form
+                        className="search-bar"
+                        onSubmit={
+                            (e) => { e.preventDefault(); props.search(query); }
+                        }
+                    >
                         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}>
                         </input>
                         <button type="submit">search</button>
@@ -33,12 +41,17 @@ const PrimaryList = props => {
                         <button type="submit">filter</button>
                     </form>
                 )}
-                <div className="list">
-                    <p>list here</p>
-                </div>
-            </div>
+                    <SongList list={listToSend} />
+
         </div>
     )
 }
 
-export default PrimaryList;
+const mapStateToProps = state => {
+    return {
+        searchResults: state.searchResults,
+        apiStatus: state.apiStatus,
+        favorites: state.favorites,
+    }
+}
+export default connect(mapStateToProps,{search})(PrimaryList);

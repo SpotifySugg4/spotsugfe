@@ -1,0 +1,19 @@
+@import "./base.scss";
+.details-container {
+  @include flexC();
+  background-color: transparentize($c1, 0.5);
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 0.5rem;
+  width: 50vw;
+  min-width: 10rem;
+  h3 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+  .suggestions-container {
+    @include flexC();
+    overflow-y: auto;
+    gap: 0.5rem;
+  }
+}

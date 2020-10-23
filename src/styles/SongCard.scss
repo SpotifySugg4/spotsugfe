@@ -1,0 +1,28 @@
+@import "./base.scss";
+.song-card {
+  @include flexR();
+  justify-items: stretch;
+  color: $c2;
+  &.active {
+    .song-info {
+      background-color: transparent;
+    }
+  }
+  .song-info {
+    background-color: darken($c1, 20);
+    flex-grow: 1;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    min-width: 5rem;
+  }
+  button {
+    background-color: transparent;
+    color: $c2;
+    border: none;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+}

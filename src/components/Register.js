@@ -179,11 +179,17 @@ const formSchema = yup.object().shape({
       <button disabled={buttonDisabled} type='submit'>Create My Account</button>
 
       <pre>{JSON.stringify(users, null, 2)}</pre>
-
+        <p>{props.apiStatus}</p>
     </form>
     </RegisterDiv>
   )
 
 }
 
-export default connect(null, { register })(Register);
+const mapStateToProps = state => {
+  return {
+    apiStatus: state.apiStatus
+  }
+}
+
+export default connect(mapStateToProps, { register })(Register);

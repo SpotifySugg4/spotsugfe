@@ -19,13 +19,10 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
         case types.REGISTER:
-            console.log('register');
             return { ...state, apiStatus: "registering" }
         case types.REGISTERED:
-            console.log('registered', action.payload.token)
             return { ...state, loggedIn: true, apiStatus: "", token: action.payload.token, username: action.payload.username }
         case types.REGISTER_FAILED:
-            console.log('register failed');
             return { ...state, apiStatus: "registration failed" }
         case types.LOGIN:
             return { ...state, apiStatus: "attempting to log in" }

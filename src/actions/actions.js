@@ -12,8 +12,10 @@ export const register = credentials => dispatch => {
 export const logIn = credentials => dispatch => {
     dispatch({ type: types.LOGIN });
     axios.post("https://tempbackend.herokuapp.com/users/login", credentials).then(r => {
-        dispatch({ type: types.LOGGED_IN, payload: r.data.token })
-        localStorage.setItem("token",r.data.token)
+        console.log(r);
+        dispatch({ type: types.LOGGED_IN, payload: { token: r.data.token, username: r.data.user.name } });
+        localStorage.setItem("username", JSON.stringify(r.data.user.name));
+        localStorage.setItem("token", JSON.stringify(r.data.token));
     }).catch(e=>dispatch({type: types.LOGIN_FAILED}))
 }
 

@@ -1,7 +1,8 @@
 import * as types from "../actions/actionTypes";
 const initialState = {
     apiStatus: "",
-    loggedIn: true,
+    loggedIn: false,
+    username: null,
     searchResults: [],
     favorites: [],
     activeSong: null,
@@ -16,7 +17,7 @@ export default function rootReducer(state = initialState, action) {
         case types.LOGIN:
             return { ...state, apiStatus: "attempting to log in" }
         case types.LOGGED_IN:
-            return { ...state, loggedIn: true, apiStatus: "", token: action.payload }
+            return { ...state, loggedIn: true, apiStatus: "", token: action.payload.token, username: action.payload.username }
         case types.LOGIN_FAILED:
             return { ...state, loggedIn: false, apiStatus: "login failed", token: null }
         case types.LOGOUT:

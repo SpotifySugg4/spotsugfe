@@ -10,7 +10,7 @@ function Header(props) {
             <h1>SpotiFindYa</h1>
             <nav>
                 {props.loggedIn ?
-                    (<button onClick={props.logOut}>logout</button>)
+                    (<button onClick={props.logOut}>logout ({props.username})</button>)
                     :
                     (<>
                         <button onClick={() => push("/login")}>log in</button>
@@ -23,7 +23,8 @@ function Header(props) {
 }
 const mapStateToProps = state => {
     return {
-      loggedIn: state.loggedIn,
+        loggedIn: state.loggedIn,
+        username: state.username
     }
   }
   export default connect(mapStateToProps, {logOut})(Header);

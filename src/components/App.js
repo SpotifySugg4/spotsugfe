@@ -12,9 +12,9 @@ function App(props) {
 <>
       <Router>
       <Header />
-        <Route exact path="/">
-          <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
-        </Route>
+         <Route exact path="/">
+           <PrivateRoute component={Main} loggedIn={props.loggedIn}/>
+         </Route>
         <Route path="/login">
           <Login />
         </Route>

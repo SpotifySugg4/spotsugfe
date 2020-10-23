@@ -96,23 +96,34 @@ const formSchema = yup.object().shape({
     <form onSubmit={formSubmit}>
 
       <label htmlFor='email'>
-        Email
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+
+        <h1>Email:</h1>
         <input 
         id='email'
         type='text'
         name='email'
         value={formState.email}
-        onChange={changeHandler}
-        required
+        onChange={changeHandl
         />
 
         {errors.email.length > 0 ? (<p className='error'>{errors.email}</p>): null}
 
       </label>
-
+<br></br>
+<br></br>
 
       <label htmlFor='password'>
-        Create Password
+         <h1>Password:</h1>
         <input 
         id='password'
         type='password'
@@ -125,8 +136,12 @@ const formSchema = yup.object().shape({
         {errors.password.length > 0 ? (<p className='error'>{errors.password}</p>): null}
 
       </label>
-
+<br>
+</br>
+<br>
+</br>
       <button disabled={buttonDisabled} type='signIn'>Login</button>
+
 
       <pre>{JSON.stringify(users, null, 2)}</pre>
       <p>{props.apiStatus}</p>

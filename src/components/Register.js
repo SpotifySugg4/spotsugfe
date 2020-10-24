@@ -1,4 +1,7 @@
 import React, {useState, useEffect } from 'react';
+// import "../styles/Register.scss";
+import { Link } from "react-router-dom";
+
 import axios from 'axios';
 import * as yup from 'yup'; 
 
@@ -100,6 +103,8 @@ const formSchema = yup.object().shape({
       })
   }
 
+
+
   return (
     
     <form onSubmit={formSubmit}>
@@ -186,6 +191,9 @@ const formSchema = yup.object().shape({
       <button disabled={buttonDisabled} type='submit'>Create My Account</button>
 
       {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
+      <br></br>
+      <br></br>
+                <Link to="/login">I already have a client account</Link>
 
     </form>
   )

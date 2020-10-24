@@ -14,6 +14,7 @@ const PrimaryList = props => {
     const listToSend = tabs.search === "active" ? props.searchResults : props.favorites.filter(fav => {
         if (fav.name.toLowerCase().includes(filter.toLowerCase())) { return fav }
         if (fav.artists.filter(artist => artist.name.toLowerCase().includes(filter.toLowerCase())).length > 0) { return fav }
+        return null;
     });
     return (
         <div className="primary-list-container">

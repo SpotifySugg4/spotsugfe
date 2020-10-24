@@ -1,7 +1,17 @@
+export const REGISTER = "REGISTER";
+export const REGISTERED = "REGISTERED";
+export const REGISTER_FAILED = "REGISTER_FAILED";
 export const LOGIN = "LOGIN";
 export const LOGGED_IN = "LOGGED_IN";
+export const LOGIN_FAILED = "LOGGIN_FAILED";
+export const LOGOUT = "LOGOUT";
+export const SET_TOKEN = "SET_TOKEN";
 export const SEARCHING = "SEARCHING";
 export const SEARCH_DONE = "SEARCH_DONE";
+export const SEARCH_FAILED = "SEARCH_FAILED";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const GOT_FAVORITES = "GOT_FAVORITES";
+export const GET_FAVORITES_FAILED = "GET_FAVORITES_FAILED";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const SET_ACTIVE_SONG = "SET_ACTIVE_SONG";

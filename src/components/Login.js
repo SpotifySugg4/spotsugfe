@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react';
 // import "../styles/Login.scss";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import axios from 'axios';
 import * as yup from 'yup'; 
 
@@ -142,6 +144,9 @@ const formSchema = yup.object().shape({
       <button disabled={buttonDisabled} type='signIn'>Login</button>
 
       {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
+      <br></br>
+      <br></br>
+      <Link exact to="/"><Button>Home</Button></Link>
 
     </form>
   )

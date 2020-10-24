@@ -3,11 +3,54 @@
 #root {
   width: 100vw;
   height: 100vh;
-  background-color: $c2;
-  color: $c4;
+  overflow: hidden;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  color: $c2;
   @include flexC();
   align-items: center;
   header {
     width: 100%;
   }
+  a {
+    text-decoration: none;
+    color: $c2;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .artist-name {
+    color: lighten($c4, 20);
+    font-weight: bold;
+  }
+  .track-name {
+    color: lighten($c5, 20);
+    font-weight: bolder;
+  }
+  .add-favorite,
+  .remove-favorite {
+    white-space: nowrap;
+    padding: 0.5rem;
+  }
+  .star {
+    color: $c4;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $c1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $c2;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $c2;
 }

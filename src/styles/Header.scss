@@ -6,6 +6,7 @@ header {
   h1 {
     font-size: 1.5rem;
     font-weight: bold;
+    color: $c4;
   }
   nav {
     @include flexR();
